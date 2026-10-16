@@ -1,0 +1,47 @@
+======================================================================================
+TASK 2: Initial State A, X to move, depth 4
+      c1 c2 c3 c4 c5 c6
+  r1   .  O  .  .  .  .
+  r2   .  .  X  .  .  .
+  r3   .  O  X  X  .  .
+  r4   .  .  O  .  .  .
+  r5   .  .  .  .  .  .
+  r6   .  .  .  .  .  .
+
+Results
+Method                Selected Move      Minimax Value  Nodes Generated  CPU Time (ms)
+--------------------------------------------------------------------------------------
+Minimax - normal      (row 4, col 5)               -71           87,190         2524.3
+Alpha-beta - normal   (row 4, col 5)               -71           15,746          412.8
+Alpha-beta - reverse  (row 4, col 5)               -71            4,476          122.2
+
+Principal variation: X(row 4, col 5)  ->  O(row 5, col 6)  ->  X(row 5, col 4)  ->  O(row 2, col 2)   (leaf h = -71)
+
+======================================================================================
+TASK 3: Initial State B, X to move, alpha-beta with normal ordering
+      c1 c2 c3 c4 c5 c6
+  r1   .  .  .  .  .  .
+  r2   .  .  .  .  .  .
+  r3   .  .  O  .  .  .
+  r4   .  X  X  O  .  .
+  r5   .  .  .  .  .  .
+  r6   .  .  .  .  .  .
+
+Results
+Depth                 Selected Move      Minimax Value  Nodes Generated  CPU Time (ms)
+--------------------------------------------------------------------------------------
+2                     (row 2, col 2)               -77               95            2.5
+3                     (row 2, col 2)                -1              962           25.1
+4                     (row 2, col 2)              -208            6,746          169.6
+
+Q3 evidence: exact values of the best root moves, and the expected line after each
+  depth 2: (row 2, col 2)=-77, (row 5, col 5)=-77, (row 5, col 2)=-277, (row 3, col 2)=-284
+      X(row 2, col 2)  ->  O(row 5, col 5)   (leaf = -77)
+      X(row 5, col 5)  ->  O(row 2, col 2)   (leaf = -77)
+  depth 3: (row 2, col 2)=-1, (row 5, col 5)=-9, (row 5, col 2)=-57, (row 3, col 2)=-64
+      X(row 2, col 2)  ->  O(row 3, col 2)  ->  X(row 3, col 4)   (leaf = -1)
+      X(row 5, col 5)  ->  O(row 3, col 4)  ->  X(row 3, col 2)   (leaf = -9)
+  depth 4: (row 2, col 2)=-208, (row 5, col 5)=-298, (row 3, col 1)=-1000, (row 4, col 1)=-1000
+      X(row 2, col 2)  ->  O(row 3, col 4)  ->  X(row 3, col 2)  ->  O(row 2, col 4)   (leaf = -208)
+      X(row 5, col 5)  ->  O(row 3, col 4)  ->  X(row 3, col 2)  ->  O(row 2, col 4)   (leaf = -298)
+
